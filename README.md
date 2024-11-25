@@ -148,11 +148,11 @@ yarn local-ship
 
 > This command does the following all in one… 🚀🚀🚀
 
--   Copies the contracts ABI from the hardhat/deployments folder
--   Generates the networks.json file
--   Generates AssemblyScript types from the subgraph schema and the contract ABIs.
--   Compiles and checks the mapping functions.
--   … and deploy a local subgraph!
+- Copies the contracts ABI from the hardhat/deployments folder
+- Generates the networks.json file
+- Generates AssemblyScript types from the subgraph schema and the contract ABIs.
+- Compiles and checks the mapping functions.
+- … and deploy a local subgraph!
 
 > If you get an error ts-node you can install it with the following command
 
@@ -197,7 +197,7 @@ Go ahead and head over to your subgraph endpoint and take a look!
 
 #### ✅ Step 4: Create Graph Client Artifacts ✅
 
-The Graph Client is a tool used to query GraphQL based applications and contains a lot of advanced features, such as client side composition or automatic pagination. A complete list of features and goals of this project can be found [here].(https://github.com/graphprotocol/graph-client?tab=readme-ov-file#features-and-goals)
+The Graph Client is a tool used to query GraphQL based applications and contains a lot of advanced features, such as client side composition or automatic pagination. A complete list of features and goals of this project can be found [here].(<https://github.com/graphprotocol/graph-client?tab=readme-ov-file#features-and-goals>)
 
 In order to utilize Graph-Client in our application, we need to build the artifacts needed for our frontend. To do this simply run...
 
@@ -205,11 +205,9 @@ In order to utilize Graph-Client in our application, we need to build the artifa
 yarn graphclient:build
 ```
 
-After doing so, navigate to http://localhost:3000/subgraph and you should be able to see the GraphQL rendered in your application. If you don't see anything, make sure you've triggered an event in your smart contract.
+After doing so, navigate to <http://localhost:3000/subgraph> and you should be able to see the GraphQL rendered in your application. If you don't see anything, make sure you've triggered an event in your smart contract.
 
 If you want to look at the query code for this, it can be found the component located in the subgraph folder `packages/nextjs/app/subgraph/_components/GreetingsTable.tsx`
-
-
 
 #### ✅ Side Quest: Run a Matchstick Test ✅
 
@@ -255,6 +253,7 @@ All 1 tests passed! 😎
 > NOTE: This step requires [deployment of contract](https://docs.scaffoldeth.io/deploying/deploy-smart-contracts) to live network. Checkout list of [supported networks](https://thegraph.com/docs/networks).
 
 1. Update the `packages/subgraph/subgraph.yaml` file with your contract address, network name, start block number(optional) :
+
    ```diff
    ...
    -     network: localhost
@@ -265,22 +264,27 @@ All 1 tests passed! 😎
    +       startBlock: 5889410
    ...
    ```
+
   TIP: For `startBlock` you can use block number of your deployed contract, which can be found by visiting deployed transaction hash in blockexplorer.
 
 2. Create a new subgraph on [Subgraph Studio](https://thegraph.com/studio) and get "SUBGRAPH SLUG" and "DEPLOY KEY".
 
 3. Authenticate with the graph CLI:
+
    ```sh
    yarn graph auth --studio <DEPLOY KEY>
    ```
 
 4. Deploy the subgraph to TheGraph Studio:
+
    ```sh
    yarn graph deploy --studio <SUBGRAPH SLUG>
    ```
+
    Once deployed, the CLI should output the Subgraph endpoints. Copy the HTTP endpoint and test your queries.
 
 5. Update `packages/nextjs/components/ScaffoldEthAppWithProviders.tsx` to use the above HTTP subgraph endpoint:
+
    ```diff
    - const subgraphUri = "http://localhost:8000/subgraphs/name/scaffold-eth/your-contract";
    + const subgraphUri = 'YOUR_SUBGRAPH_ENDPOINT';
@@ -375,6 +379,7 @@ yarn deploy
 ```
 
 Deploy a subgraph to TheGraph.
+
 ## Documentation
 
 Visit our [docs](https://docs.scaffoldeth.io) to learn how to start building with Scaffold-ETH 2.
