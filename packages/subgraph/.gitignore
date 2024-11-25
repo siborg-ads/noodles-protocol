@@ -1,3 +1,6 @@
 build/*
 generated/*
 graph-node/data/*
+tests/.bin
+tests/.docker
+tests/.latest.json
