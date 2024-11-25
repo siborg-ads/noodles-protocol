@@ -1,0 +1,55 @@
+{
+  "name": "se-2",
+  "version": "0.0.1",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "abi-copy": "yarn workspace @noodles-protocol/subgraph abi-copy",
+    "account": "yarn workspace @noodles-protocol/hardhat account",
+    "chain": "yarn workspace @noodles-protocol/hardhat chain",
+    "clean-node": "yarn workspace @noodles-protocol/subgraph clean-node",
+    "codegen": "yarn workspace @noodles-protocol/subgraph codegen",
+    "compile": "yarn workspace @noodles-protocol/hardhat compile",
+    "deploy": "yarn workspace @noodles-protocol/hardhat deploy",
+    "flatten": "yarn workspace @noodles-protocol/hardhat flatten",
+    "fork": "yarn workspace @noodles-protocol/hardhat fork",
+    "format": "yarn next:format && yarn hardhat:format",
+    "generate": "yarn workspace @noodles-protocol/hardhat generate",
+    "graph": "yarn workspace @noodles-protocol/subgraph graph",
+    "graphclient:build": "yarn workspace @noodles-protocol/nextjs client",
+    "hardhat-verify": "yarn workspace @noodles-protocol/hardhat hardhat-verify",
+    "hardhat:format": "yarn workspace @noodles-protocol/hardhat format",
+    "hardhat:lint": "yarn workspace @noodles-protocol/hardhat lint",
+    "hardhat:lint-staged": "yarn workspace @noodles-protocol/hardhat lint-staged",
+    "hardhat:test": "yarn workspace @noodles-protocol/hardhat test",
+    "postinstall": "husky install",
+    "local-create": "yarn workspace @noodles-protocol/subgraph local-create",
+    "local-ship": "yarn workspace @noodles-protocol/subgraph local-ship",
+    "next:build": "yarn workspace @noodles-protocol/nextjs build",
+    "next:check-types": "yarn workspace @noodles-protocol/nextjs check-types",
+    "next:format": "yarn workspace @noodles-protocol/nextjs format",
+    "next:lint": "yarn workspace @noodles-protocol/nextjs lint",
+    "next:serve": "yarn workspace @noodles-protocol/nextjs serve",
+    "precommit": "lint-staged",
+    "run-node": "yarn workspace @noodles-protocol/subgraph run-node",
+    "start": "yarn workspace @noodles-protocol/nextjs dev",
+    "stop-node": "yarn workspace @noodles-protocol/subgraph stop-node",
+    "subgraph:test": "yarn workspace @noodles-protocol/subgraph test",
+    "test": "yarn hardhat:test",
+    "vercel": "yarn workspace @noodles-protocol/nextjs vercel",
+    "vercel:yolo": "yarn workspace @noodles-protocol/nextjs vercel:yolo",
+    "verify": "yarn workspace @noodles-protocol/hardhat verify"
+  },
+  "devDependencies": {
+    "husky": "~8.0.3",
+    "lint-staged": "~13.2.2"
+  },
+  "packageManager": "yarn@3.2.3",
+  "engines": {
+    "node": ">=18.18.0"
+  }
+}
