@@ -1,26 +1,118 @@
-specVersion: 0.0.4
-description: Greetings
-repository: https://github.com/scaffold-eth/se-2/packages/subgraph/
+specVersion: 1.0.0
 schema:
-  file: ./src/schema.graphql
+  file: ./schema.graphql
 dataSources:
-  - kind: ethereum/contract
-    name: YourContract
-    network: localhost
+  - kind: ethereum
+    name: VisibilityCredits
+    network: sepolia
     source:
-      abi: YourContract
-      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+      address: "0xBDD51b0C6BA77a43b999d8e14D5460782ac9dBD7"
+      abi: VisibilityCredits
+      startBlock: 7059868
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - Greeting
-        - Sender
+        - CreatorFeeClaimed
+        - CreatorVisibilitySet
+        - CreditsTrade
+        - CreditsTransfer
+        - DefaultAdminDelayChangeCanceled
+        - DefaultAdminDelayChangeScheduled
+        - DefaultAdminTransferCanceled
+        - DefaultAdminTransferScheduled
+        - RoleAdminChanged
+        - RoleGranted
+        - RoleRevoked
       abis:
-        - name: YourContract
-          file: ./abis/localhost_YourContract.json
+        - name: VisibilityCredits
+          file: ./abis/VisibilityCredits.json
       eventHandlers:
-        - event: GreetingChange(indexed address,string,bool,uint256)
-          handler: handleGreetingChange
-      file: ./src/mapping.ts
+        - event: CreatorFeeClaimed(indexed address,uint256)
+          handler: handleCreatorFeeClaimed
+        - event: CreatorVisibilitySet(string,address)
+          handler: handleCreatorVisibilitySet
+        - event: CreditsTrade((address,string,uint256,bool,uint256,uint256,uint256,uint256,address,uint256,uint256))
+          handler: handleCreditsTrade
+        - event: CreditsTransfer(string,indexed address,indexed address,uint256)
+          handler: handleCreditsTransfer
+        - event: DefaultAdminDelayChangeCanceled()
+          handler: handleDefaultAdminDelayChangeCanceled
+        - event: DefaultAdminDelayChangeScheduled(uint48,uint48)
+          handler: handleDefaultAdminDelayChangeScheduled
+        - event: DefaultAdminTransferCanceled()
+          handler: handleDefaultAdminTransferCanceled
+        - event: DefaultAdminTransferScheduled(indexed address,uint48)
+          handler: handleDefaultAdminTransferScheduled
+        - event: RoleAdminChanged(indexed bytes32,indexed bytes32,indexed bytes32)
+          handler: handleRoleAdminChanged
+        - event: RoleGranted(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleGranted
+        - event: RoleRevoked(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleRevoked
+      file: ./src/visibility-credits.ts
+  - kind: ethereum
+    name: VisibilityServices
+    network: sepolia
+    source:
+      abi: VisibilityServices
+      address: "0x23E3934b53F2d20A30a6c3Bb207D612fE033FB98"
+      startBlock: 7059868
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - VisibilityServicesDefaultAdminDelayChangeCanceled
+        - VisibilityServicesDefaultAdminDelayChangeScheduled
+        - VisibilityServicesDefaultAdminTransferCanceled
+        - VisibilityServicesDefaultAdminTransferScheduled
+        - VisibilityServicesRoleAdminChanged
+        - VisibilityServicesRoleGranted
+        - VisibilityServicesRoleRevoked
+        - ServiceCreated
+        - ServiceExecutionAccepted
+        - ServiceExecutionCanceled
+        - ServiceExecutionDisputed
+        - ServiceExecutionRequested
+        - ServiceExecutionResolved
+        - ServiceExecutionValidated
+        - ServiceUpdated
+      abis:
+        - name: VisibilityServices
+          file: ./abis/VisibilityServices.json
+      eventHandlers:
+        - event: DefaultAdminDelayChangeCanceled()
+          handler: handleDefaultAdminDelayChangeCanceled
+        - event: DefaultAdminDelayChangeScheduled(uint48,uint48)
+          handler: handleDefaultAdminDelayChangeScheduled
+        - event: DefaultAdminTransferCanceled()
+          handler: handleDefaultAdminTransferCanceled
+        - event: DefaultAdminTransferScheduled(indexed address,uint48)
+          handler: handleDefaultAdminTransferScheduled
+        - event: RoleAdminChanged(indexed bytes32,indexed bytes32,indexed bytes32)
+          handler: handleRoleAdminChanged
+        - event: RoleGranted(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleGranted
+        - event: RoleRevoked(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleRevoked
+        - event: ServiceCreated(indexed uint256,string,string,uint256)
+          handler: handleServiceCreated
+        - event: ServiceExecutionAccepted(indexed uint256,indexed uint256,string)
+          handler: handleServiceExecutionAccepted
+        - event: ServiceExecutionCanceled(indexed uint256,indexed uint256,indexed
+            address,string)
+          handler: handleServiceExecutionCanceled
+        - event: ServiceExecutionDisputed(indexed uint256,indexed uint256,string)
+          handler: handleServiceExecutionDisputed
+        - event: ServiceExecutionRequested(indexed uint256,indexed uint256,indexed
+            address,string)
+          handler: handleServiceExecutionRequested
+        - event: ServiceExecutionResolved(indexed uint256,indexed uint256,bool,string)
+          handler: handleServiceExecutionResolved
+        - event: ServiceExecutionValidated(indexed uint256,indexed uint256)
+          handler: handleServiceExecutionValidated
+        - event: ServiceUpdated(indexed uint256,bool)
+          handler: handleServiceUpdated
+      file: ./src/visibility-services.ts
