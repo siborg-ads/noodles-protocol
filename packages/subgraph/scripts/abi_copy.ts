@@ -38,7 +38,7 @@ function publishContract(
       console.log(e)
     }
 
-    let graphConfigObject = JSON.parse(graphConfig)
+    const graphConfigObject = JSON.parse(graphConfig)
     if (!(networkName in graphConfigObject)) {
       graphConfigObject[networkName] = {}
     }
