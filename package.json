@@ -22,6 +22,8 @@
     "graph": "yarn workspace @noodles-protocol/subgraph graph",
     "graphclient:build": "yarn workspace @noodles-protocol/nextjs client",
     "hardhat-verify": "yarn workspace @noodles-protocol/hardhat hardhat-verify",
+    "hardhat:compile:abstractTestnet": "yarn workspace @noodles-protocol/hardhat compile:abstractTestnet",
+    "hardhat:deploy:abstractTestnet": "yarn workspace @noodles-protocol/hardhat deploy:abstractTestnet",
     "hardhat:format": "yarn workspace @noodles-protocol/hardhat format",
     "hardhat:lint": "yarn workspace @noodles-protocol/hardhat lint",
     "hardhat:lint-staged": "yarn workspace @noodles-protocol/hardhat lint-staged",

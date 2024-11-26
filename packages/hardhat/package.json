@@ -5,8 +5,10 @@
     "account": "hardhat run scripts/listAccount.ts",
     "chain": "hardhat node --network hardhat --no-deploy",
     "check-types": "tsc --noEmit --incremental",
-    "compile": "hardhat compile",
+    "compile": "hardhat clean && hardhat compile",
+    "compile:abstractTestnet": "hardhat clean && hardhat compile --network abstractTestnet",
     "deploy": "hardhat deploy",
+    "deploy:abstractTestnet": "yarn compile:abstractTestnet && hardhat deploy-zksync --script deployZkSync.ts --network abstractTestnet",
     "flatten": "hardhat flatten",
     "fork": "MAINNET_FORKING_ENABLED=true hardhat node --network hardhat --no-deploy",
     "format": "prettier --write ./*.ts ./deploy/**/*.ts ./scripts/**/*.ts ./test/**/*.ts",
@@ -27,6 +29,8 @@
   "devDependencies": {
     "@ethersproject/abi": "~5.7.0",
     "@ethersproject/providers": "~5.7.2",
+    "@matterlabs/hardhat-zksync": "^1.3.0",
+    "@matterlabs/zksync-contracts": "^0.6.1",
     "@nomicfoundation/hardhat-chai-matchers": "~2.0.7",
     "@nomicfoundation/hardhat-ethers": "~3.0.8",
     "@nomicfoundation/hardhat-network-helpers": "~1.0.11",
@@ -43,7 +47,7 @@
     "eslint": "~8.57.1",
     "eslint-config-prettier": "~8.10.0",
     "eslint-plugin-prettier": "~5.2.1",
-    "ethers": "~6.13.2",
+    "ethers": "6",
     "hardhat": "~2.22.10",
     "hardhat-deploy": "~0.12.4",
     "hardhat-deploy-ethers": "~0.4.2",
@@ -52,6 +56,7 @@
     "solidity-coverage": "~0.8.13",
     "ts-node": "~10.9.1",
     "typechain": "~8.3.2",
-    "typescript": "<5.6.0"
+    "typescript": "<5.6.0",
+    "zksync-ethers": "6"
   }
 }

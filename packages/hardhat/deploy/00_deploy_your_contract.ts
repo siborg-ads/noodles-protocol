@@ -59,7 +59,6 @@ const deployment: DeployFunction = async function (hre: HardhatRuntimeEnvironmen
   const visibilityServicesAddress = await visibilityServices.getAddress();
   console.log("VisibilityServices deployed to:", visibilityServicesAddress);
 
-  /*
   await hre.run("verify:verify", {
     address: visibilityCreditsAddress,
     constructorArguments: [deployer, deployer],
@@ -69,7 +68,6 @@ const deployment: DeployFunction = async function (hre: HardhatRuntimeEnvironmen
     address: visibilityServicesAddress,
     constructorArguments: [visibilityCreditsAddress, deployer],
   });
-  */
 };
 
 export default deployment;

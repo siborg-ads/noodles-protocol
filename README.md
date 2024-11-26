@@ -1,23 +1,46 @@
-# 🏗 Scaffold-ETH 2
+# Noodles.Fun - Feed Your KOLs! 🍜
 
-<h4 align="center">
-  <a href="https://docs.scaffoldeth.io">Documentation</a> |
-  <a href="https://scaffoldeth.io">Website</a>
-</h4>
+## Presentation
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+**Noodles.Fun** tokenizes Twitter (X) accounts into unique bonding curve tokens. Instantly trade and speculate on content creators’ tokens and use them for promotion services like shoutout posts on X. A fun and interactive way to support, engage, and invest in KOLs!
 
-⚙️ Built using NextJS, RainbowKit, Hardhat, Wagmi, Viem, and Typescript.
+### How It Works
 
-- ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
+1. **Every Twitter Account is tokenized:** Automatically generate a unique bonding curve token.  
+2. **Trade Tokens instantly:** Buy or sell tokens instantly through the bonding curve—no need for liquidity pools or listings.
+3. **Spend Tokens for Promotions:** The X account owner can accept their tokens as payment for services like post promotions, pinned tweets, or other custom engagements.
 
-![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
+---
 
-## Requirements
+### Built With
+
+- **Privy:** Ties Twitter accounts to Ethereum wallets seamlessly.
+- **The Graph:** Fully decentralized data for promotion services and trading history.
+- **Abstract L2:** Scalable Ethereum dApps infrastructure.
+
+---
+
+### Deployments
+
+#### `VisibilityCredits` contract
+
+Powers creator tokens using the bonding curve formula: `Price = A × Supply² + B × Supply + BasePrice`. As token supply increases, the price grows exponentially, rewarding early supporters.
+
+- Abstract Testnet: [`0x2bA4eC624b2b9033453551964FA4eAB7ce0A0c71`](https://explorer.testnet.abs.xyz/address/0x2bA4eC624b2b9033453551964FA4eAB7ce0A0c71)
+
+#### `VisibilityServices` contract
+
+Allows creators to accept tokens for off-chain promotion services.
+
+- Abstract Testnet: [`0x6760CE623A9231F5328b0C043B759B7c6d3626Fa`](https://explorer.testnet.abs.xyz/address/0x6760CE623A9231F5328b0C043B759B7c6d3626Fa)
+
+#### Subgraphs
+
+Fetch data from onchain events.
+
+- [Abstract Testnet Subgraph endpoint](https://api.goldsky.com/api/public/project_cm3yp5wtflxub01wra3g2a0bc/subgraphs/noodles-abstractTestnet/0.0.1/gn)
+
+## Development
 
 Before you begin, you need to install the following tools:
 
@@ -25,14 +48,11 @@ Before you begin, you need to install the following tools:
 - Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
 - [Git](https://git-scm.com/downloads)
 
-## Quickstart
+### Get started
 
-To get started with Scaffold-ETH 2, follow the steps below:
-
-1. Install dependencies if it was skipped in CLI:
+1. Install dependencies:
 
 ```
-cd my-dapp-example
 yarn install
 ```
 
@@ -66,7 +86,7 @@ Run smart contract test with `yarn hardhat:test`
 - Edit your frontend homepage at `packages/nextjs/app/page.tsx`. For guidance on [routing](https://nextjs.org/docs/app/building-your-application/routing/defining-routes) and configuring [pages/layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts) checkout the Next.js documentation.
 - Edit your deployment scripts in `packages/hardhat/deploy`
 
-## 🚀 Setup The Graph Integration
+### 🚀 Setup The Graph Integration
 
 Now that we have spun up our blockchain, started our frontend application and deployed our smart contract, we can start setting up our subgraph and utilize The Graph!
 
@@ -248,7 +268,7 @@ All 1 tests passed! 😎
 
 > NOTE: If you get an error, you may trying passing `-d` flag `yarn subgraph:test -d`. This will run matchstick in docker container.
 
-## Shipping to Subgraph Studio 🚀
+### Shipping to Subgraph Studio 🚀
 
 > NOTE: This step requires [deployment of contract](https://docs.scaffoldeth.io/deploying/deploy-smart-contracts) to live network. Checkout list of [supported networks](https://thegraph.com/docs/networks).
 
@@ -290,9 +310,9 @@ All 1 tests passed! 😎
    + const subgraphUri = 'YOUR_SUBGRAPH_ENDPOINT';
    ```
 
-## A list of all available commands
+### A list of all available commands
 
-### run-node
+#### run-node
 
 ```sh
 yarn run-node
@@ -300,7 +320,7 @@ yarn run-node
 
 Spin up a local graph node (requires Docker).
 
-### stop-node
+#### stop-node
 
 ```sh
 yarn stop-node
@@ -308,7 +328,7 @@ yarn stop-node
 
 Stop the local graph node.
 
-### clean-node
+#### clean-node
 
 ```sh
 yarn clean-node
@@ -316,7 +336,7 @@ yarn clean-node
 
 Remove the data from the local graph node.
 
-### local-create
+#### local-create
 
 ```sh
 yarn local-create
@@ -324,7 +344,7 @@ yarn local-create
 
 Create your local subgraph (only required once).
 
-### local-remove
+#### local-remove
 
 ```sh
 yarn local-remove
@@ -332,7 +352,7 @@ yarn local-remove
 
 Delete a local subgprah.
 
-### abi-copy
+#### abi-copy
 
 ```sh
 yarn abi-copy
@@ -340,7 +360,7 @@ yarn abi-copy
 
 Copy the contracts ABI from the hardhat/deployments folder. Generates the networks.json file too.
 
-### codegen
+#### codegen
 
 ```sh
 yarn codegen
@@ -348,7 +368,7 @@ yarn codegen
 
 Generates AssemblyScript types from the subgraph schema and the contract ABIs.
 
-### build
+#### build
 
 ```sh
 yarn build
@@ -356,7 +376,7 @@ yarn build
 
 Compile and check the mapping functions.
 
-### local-deploy
+#### local-deploy
 
 ```sh
 yarn local-deploy
@@ -364,7 +384,7 @@ yarn local-deploy
 
 Deploy a local subgraph.
 
-### local-ship
+#### local-ship
 
 ```sh
 yarn local-ship
@@ -372,22 +392,10 @@ yarn local-ship
 
 Run all the required commands to deploy a local subgraph (abi-copy, codegen, build and local-deploy).
 
-### deploy
+#### deploy
 
 ```sh
 yarn deploy
 ```
 
 Deploy a subgraph to TheGraph.
-
-## Documentation
-
-Visit our [docs](https://docs.scaffoldeth.io) to learn how to start building with Scaffold-ETH 2.
-
-To know more about its features, check out our [website](https://scaffoldeth.io).
-
-## Contributing to Scaffold-ETH 2
-
-We welcome contributions to Scaffold-ETH 2!
-
-Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.

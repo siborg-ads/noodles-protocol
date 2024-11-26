@@ -122,10 +122,10 @@ describe("VisibilityCredits", function () {
       await creditsContract.connect(user1).buyCredits(visibilityId1, amount, referrer, { value: buyCost });
 
       const initialCreatorBalance = await ethers.provider.getBalance(creator1.address);
-      await creditsContract.connect(creator1).claimCreatorFee(visibilityId1);
-      const finalCreatorBalance = await ethers.provider.getBalance(creator1.address);
+      await creditsContract.connect(user1).claimCreatorFee(visibilityId1);
+      const finalCreatorBalanceee = await ethers.provider.getBalance(creator1.address);
 
-      expect(finalCreatorBalance).to.be.gt(initialCreatorBalance);
+      expect(finalCreatorBalanceee).to.be.gt(initialCreatorBalance);
     });
   });
 

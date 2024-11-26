@@ -4,11 +4,11 @@ schema:
 dataSources:
   - kind: ethereum
     name: VisibilityCredits
-    network: sepolia
+    network: abstract-testnet
     source:
-      address: "0xBDD51b0C6BA77a43b999d8e14D5460782ac9dBD7"
+      address: "0x2bA4eC624b2b9033453551964FA4eAB7ce0A0c71"
       abi: VisibilityCredits
-      startBlock: 7059868
+      startBlock: 1352067
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -54,11 +54,11 @@ dataSources:
       file: ./src/visibility-credits.ts
   - kind: ethereum
     name: VisibilityServices
-    network: sepolia
+    network: abstract-testnet
     source:
       abi: VisibilityServices
-      address: "0x23E3934b53F2d20A30a6c3Bb207D612fE033FB98"
-      startBlock: 7059868
+      address: "0x6760CE623A9231F5328b0C043B759B7c6d3626Fa"
+      startBlock: 1352067
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7

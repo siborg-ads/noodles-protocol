@@ -1,12 +1,13 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 import { HardhatUserConfig } from "hardhat/config";
+import "@matterlabs/hardhat-zksync";
 import "@nomicfoundation/hardhat-ethers";
 import "@nomicfoundation/hardhat-chai-matchers";
 import "@typechain/hardhat";
 import "hardhat-gas-reporter";
 import "solidity-coverage";
-import "@nomicfoundation/hardhat-verify";
+// import "@nomicfoundation/hardhat-verify";
 import "hardhat-deploy";
 import "hardhat-deploy-ethers";
 
@@ -20,6 +21,13 @@ const deployerPrivateKey =
 const etherscanApiKey = process.env.ETHERSCAN_API_KEY || "DNXJA8RX2Q3VZ4URQIWP7Z68CJXQZSC6AW";
 
 const config: HardhatUserConfig = {
+  zksolc: {
+    version: "latest",
+    settings: {
+      // Note: This must be true to call NonceHolder & ContractDeployer system contracts
+      enableEraVMExtensions: false,
+    },
+  },
   solidity: {
     compilers: [
       {
@@ -34,7 +42,7 @@ const config: HardhatUserConfig = {
       },
     ],
   },
-  defaultNetwork: "localhost",
+  defaultNetwork: "abstractTestnet",
   namedAccounts: {
     deployer: {
       // By default, it will take the first Hardhat account as the deployer
@@ -46,9 +54,20 @@ const config: HardhatUserConfig = {
     // If the network you are looking for is not here you can add new network settings
     hardhat: {
       forking: {
-        url: `https://eth-mainnet.alchemyapi.io/v2/${providerApiKey}`,
-        enabled: process.env.MAINNET_FORKING_ENABLED === "true",
+        // url: `https://eth-mainnet.alchemyapi.io/v2/${providerApiKey}`,
+        // enabled: process.env.MAINNET_FORKING_ENABLED === "true",
+        url: "https://api.testnet.abs.xyz",
+        blockNumber: 1348781,
       },
+      chainId: 11124,
+    },
+    abstractTestnet: {
+      url: "https://api.testnet.abs.xyz",
+      chainId: 11124,
+      accounts: [deployerPrivateKey],
+      ethNetwork: "sepolia",
+      zksync: true,
+      verifyURL: "https://api-explorer-verify.testnet.abs.xyz/contract_verification",
     },
     mainnet: {
       url: `https://eth-mainnet.alchemyapi.io/v2/${providerApiKey}`,
@@ -126,7 +145,18 @@ const config: HardhatUserConfig = {
   // configuration for harhdat-verify plugin
   etherscan: {
     apiKey: `${etherscanApiKey}`,
+    customChains: [
+      {
+        network: "abstractTestnet",
+        chainId: 11124,
+        urls: {
+          apiURL: "https://api-explorer-verify.testnet.abs.xyz/contract_verification",
+          browserURL: "https://explorer.testnet.abs.xyz/",
+        },
+      },
+    ],
   },
+
   // configuration for etherscan-verify from hardhat-deploy plugin
   verify: {
     etherscan: {
@@ -134,7 +164,7 @@ const config: HardhatUserConfig = {
     },
   },
   sourcify: {
-    enabled: false,
+    enabled: true,
   },
 };
 
